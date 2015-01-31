@@ -6,9 +6,9 @@
 # polymorphism in proteins. Protein Sci. 2010 Jul;19(7):1420-31. PubMed PMID:
 # 20499387
 # 
-# Barad BA, Echols N, Wang RYR, Cheng YC, DiMaio F, Adams PD,\n"+
-# Fraser JS. Side-chain-directed model and map validation for 3D \n"+
-# Electron Cryomicroscopy. Manuscript in preparation.\n"+
+# Barad BA, Echols N, Wang RYR, Cheng YC, DiMaio F, Adams PD,
+# Fraser JS. Side-chain-directed model and map validation for 3D
+# Electron Cryomicroscopy. Manuscript in preparation.
 
 import libtbx.phil
 import numpy
