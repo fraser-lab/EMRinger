@@ -1,5 +1,5 @@
 # EMRinger_Manuscript
-*All of the scripts used in the EMRingerWeb paper were based on [Phenix](www.phenix-online.org), [python](www.python.org), and [pymol](www.pymol.org)*
+*All of the scripts used in the EMRinger paper were based on [Phenix](www.phenix-online.org), [python](www.python.org), and [pymol](www.pymol.org)*
 
 ## Requirements
 *These were the software versions used to make the figures*
