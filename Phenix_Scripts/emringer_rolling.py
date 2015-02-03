@@ -28,7 +28,7 @@ Weird = ["PRO"]
 ########################################################################
 # Argument Parsing  
 parser = argparse.ArgumentParser()
-parser.add_argument("-a", "--file_a", dest="filename_a", 
+parser.add_argument("-i", "--file_a", dest="filename_a", 
   help='Filename of pkl file', 
   default='/Users/benjaminbarad/Dropbox/Ringer_Project/Ringer_Output/5778.ent_ringer.pkl')
 parser.add_argument("-o", dest="offset", type=int, default=0)
@@ -147,9 +147,9 @@ def plot_results(results_a):
     # plt.title("Rolling window - Chain %s" % chain)
     x_a = [k[0] for k in results_a[chain]]
     y_a = [np.divide(k[3],k[2]) for k in results_a[chain]]
-    plt.plot(x_a, y_a, label = "Unrefined",linewidth=3.0, alpha=0.9)
+    plt.plot(x_a, y_a, linewidth=3.0, alpha=0.9)
     # plt.xlim(381,695)
-    plt.xlabel("Center Residue of 101-Residue Window", labelpad=10)
+    plt.xlabel("Center Residue of %d-Residue Window" % (10*args.extension+1), labelpad=10)
     plt.ylabel("Fraction Rotameric Residues", labelpad=10)
     plt.ylim(0,1)
     # plt.legend(loc=4)
