@@ -1,3 +1,5 @@
+#! /usr/bin/env phenix.python
+
 from libtbx import easy_pickle
 import argparse
 from emringer import *

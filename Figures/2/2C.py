@@ -1,4 +1,4 @@
-# Peakfinder_residue.py
+#! /usr/bin/env phenix.python
 
 # Rotamer distribution analysis tool for validation of models generated from cryoEM data.
 # Written by Benjamin Barad
