@@ -11,7 +11,9 @@ The "standard" EMRinger Score calculation requires `emringer.py` and `emringer_s
 phenix.python emringer.py PDB.pdb MAP.map
 phenix.python emringer_score.py -i PDB_ringer.pkl
 ```
- `emringer_score.py` will generate a series of histogram plots at each threshold, a plot of EMRinger scores and enrichment across thresholds, and a series `.pkl` files that contain the various data calculated in the scan. All of these plots will be saved to a folder that is named `PDB_ringer.pkl.output/`. The script will also print a series of statistics, culminating in the EMRinger score. This is the value that should be used in "table 1" or the equivalent for any structure papers using EMRinger score as a validation statistic.
+ `emringer_score.py` will generate a series of histogram plots at each threshold, a plot of EMRinger scores and enrichment across thresholds, and a series `.pkl` files that contain the various data calculated in the scan. All of these plots will be saved to a folder that is named `PDB_ringer.pkl.output/`. The scripts look best when used in combination with my [`matplotlibrc` file](https://github.com/bbarad/matplotlibrc), which will be used automatically by phenix.python if the file is in the same folder as the script is being run. A copy of the matplotlibrc is in the figures folder of this repository. 
+ 
+The `emringer_score.py` script will also print a series of statistics, culminating in the EMRinger score. **This is the value that should be used in "table 1" or the equivalent for any structure papers using EMRinger score as a validation statistic.**
 
 To run other scripts used in the EMRinger manuscript, the following usage patterns are advised.
 
