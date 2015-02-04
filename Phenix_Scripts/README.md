@@ -5,6 +5,7 @@ These scripts can all be run with phenix.python.
 `emringer_score.py` and `emringer_residue.py` and `emringer_rolling.py` each import from `emringer.py`, so all scripts must be kept in the same folder to run.
 
 ## Calculating an EMRinger Score for your structure
+*EMRinger reports very sensitively on model-to-map agreement, and therefore precise fit is very important. Even slight misalignments can cause dramatically lower scores (try offsetting your structure by 0.1 Å... the score should drop dramatically). For getting a precise fit if you don't have one coming out of refinement, the best result that I have come up with is to superimpose your model onto a fitted model. If such a model is not available, I have had great success using `phenix.real_space_refine` without any special parameters.*
 
 The "standard" EMRinger Score calculation requires `emringer.py` and `emringer_score.py`. The first performs the EMRinger scan, and the second performs the threshold scan and calculates Z-scores at each threshold. It requires a model in pdb format, and a map in CCP4 format, with a file extension of `.map` or `.ccp4`. MRC files typically work as well, but the file extension needs to be changed and occasionally problems arise as a result of origin shifts. 
 
