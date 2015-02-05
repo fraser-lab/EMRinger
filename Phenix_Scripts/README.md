@@ -19,6 +19,14 @@ phenix.python emringer_score.py -i PDB_ringer.pkl
 #### Actually getting the score
 The `emringer_score.py` script will also print a series of statistics, culminating in the EMRinger score. **This is the value that should be used in "table 1" or the equivalent for any structure papers using EMRinger score as a validation statistic.**
 
+#### My score is near 0 (or negative); what now?
+The histograms plotted by the `emringer_score.py` script can come in handy for troubleshooting.
+
+If the results look like relatively flat noise, and you are confident in the quality of your map, it is likely that the position of the model does not line up with the map. Try loading your structure into pymol and seeing whether they overlap. You can do the same in Chimera, but it can detect and correct for some problems so that improperly aligned models might appear aligned. Position your model in the map well as described above; in a worst case scenario, `phenix.real_space_refine` should be able to correct the fit, but it may change your model somewhat in the process. Your model may need further improvement if it continues to score poorly after fitting, and it is also possible that your map is too low in resolution to resolve side chains.
+
+If there is a significant number of peaks in the 0-20º range, or around 120º, you may be sampling into the backbone density during the EMRinger scan. This can happen in low resolution maps, but has been seen in a few cases in higher resolution maps. The solution we have found is to apply a small amount of B-factor sharpening. In general, B-factor sharpening decreases EMRinger scores in our experience, so we recommend using as small a degree of sharpening as possible to eliminate the sampling into the backbone. Large amounts of sharpening broadens the peaks in the EMRinger scan, making the assigned peak angle less accurate and more likely to be non-rotameric. It also may be necessary to perform further refinement, as slightly misplaced backbone positions can exacerbate the problem.
+
+
 
 ## Doing other things with EMRinger
 To run other scripts used in the EMRinger manuscript, the following usage patterns are advised.
