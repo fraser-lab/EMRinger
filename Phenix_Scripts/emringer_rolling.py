@@ -8,14 +8,14 @@ from emringer import ringer_chi, ringer_residue
 from libtbx import easy_pickle
 import matplotlib.pyplot as plt
 import argparse
-from matplotlib import rcParams
+# from matplotlib import rcParams
 from itertools import count, groupby
 
-rcParams['figure.autolayout'] = True
-rcParams['xtick.labelsize'] = 16
-rcParams['ytick.labelsize'] = 16
-rcParams['axes.labelsize'] = 24
-rcParams['axes.titlesize'] = 24
+# rcParams['figure.autolayout'] = True
+# rcParams['xtick.labelsize'] = 16
+# rcParams['ytick.labelsize'] = 16
+# rcParams['axes.labelsize'] = 24
+# rcParams['axes.titlesize'] = 24
 
 
 Residue_codes = ["ARG","ASN","ASP","CYS","GLU","GLN","HIS",
