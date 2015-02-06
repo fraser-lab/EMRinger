@@ -153,8 +153,8 @@ def plot_results(results_a):
     plt.ylabel("Fraction Rotameric Residues", labelpad=10)
     plt.ylim(0,1)
     # plt.legend(loc=4)
-    ax.axvspan(380,382,color='0.1',alpha=0.3, linewidth=0)
-    ax.axvspan(694,696,color='0.1',alpha=0.3, linewidth=0)
+    # ax.axvspan(380,382,color='0.1',alpha=0.3, linewidth=0)
+    # ax.axvspan(694,696,color='0.1',alpha=0.3, linewidth=0)
     ax.yaxis.set_ticks_position('left') # this one is optional but I still recommend it...
     ax.xaxis.set_ticks_position('bottom')
     if args.graph:
