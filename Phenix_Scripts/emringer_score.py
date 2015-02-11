@@ -116,10 +116,10 @@ def RMSD_statistic(peak_list):
 def calculate_peaks(ringer,threshold, args):
 	## Checks if something is greater than either of its neighbors (including wrapping) and returns if true and if above a threshold)
 	new_peaks=Peaklist()
-	list = ringer._angles[args.chi_angle].densities
+	list = ringer._angles[1].densities
 	for i in range(len(list)):
 		if (list[i]==max(list) and list[i]>threshold):
-			new_peaks.add_new(ringer.resname, ringer.resid, ringer.chain_id, args.chi_angle, i, list[i])
+			new_peaks.add_new(ringer.resname, ringer.resid, ringer.chain_id, 1, i, list[i])
 	return new_peaks
 
 
@@ -127,7 +127,7 @@ def calculate_peaks(ringer,threshold, args):
 def parse_pickle(filename, args):
 	# All processes that require reading the pickle. Involves reading out the angles and calculating the thresholds.
 	print "===== Loading Pickle: %s =====" % filename
-	chi = args.chi_angle
+	chi = 1
 	waves=[]
 	averages=[]
 	maxima=[]
