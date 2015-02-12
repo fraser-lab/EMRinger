@@ -158,7 +158,7 @@ def calc_ratio(count_list, args):
 	# Calculate the same statistics as the "statistic" call, but do it without ifrst binning the peaks.
 	total_angles=360/args.sampling_angle
 	binsize=int(total_angles/6)
-	first_loc=args.first_rotamer/args.sampling_angle
+	first_loc=60/args.sampling_angle
 	
 	binned_list=[0]*6
 	for i in range(6):
@@ -217,7 +217,7 @@ def main(args):
 				if ((peak.chi_value<6) or (peak.chi_value>18 and peak.chi_value<30) or (peak.chi_value>42 and peak.chi_value<54) or (peak.chi_value>66)):
 					Weird_residues[threshold].peaks.append(peak)
 			# Calculate the binned peaks and ratios
-			binned_peaks[threshold] = calculate_binned_counts(peak_count[threshold], args.first_rotamer)
+			binned_peaks[threshold] = calculate_binned_counts(peak_count[threshold], 60)
 			# print "For threshold %.3f" % threshold
 			# print "Sample size = %d" % sum(binned_peaks[threshold])
 			zscore_n, rotamer_ratio_n = statistic(binned_peaks[threshold])
@@ -231,8 +231,8 @@ def main(args):
 			zscores.append(zscore_n)
 			rotamer_ratios.append(rotamer_ratio_n)
 			print "===== Plotting Histogram for Threshold %.3f =====" % threshold
-			plot_peaks(peak_count[threshold], file, threshold, args.first_rotamer, RMSD_statistic(peaks[threshold].peaks))
-			# plot_rotamers(binned_peaks[threshold], file, threshold, args.first_rotamer)
+			plot_peaks(peak_count[threshold], file, threshold, 60, RMSD_statistic(peaks[threshold].peaks))
+			# plot_rotamers(binned_peaks[threshold], file, threshold, 60)
 		# 	print "Outliers at threshold %.2f: %s" % (threshold, str(Weird_residues[threshold]))
 		print ""
 		print "===== Plotting Statistics Across Thresholds ====="
