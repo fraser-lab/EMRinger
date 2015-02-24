@@ -381,7 +381,7 @@ def run (args, out=None, verbose=True) :
     print >> out, "Overall runtime:    %8.1fs" % (t2 - t0)
   if (params.output_base is None) :
     pdb_base = os.path.basename(params.pdb_file)
-    params.output_base = os.path.splitext(pdb_base)[0] + "_ringer"
+    params.output_base = os.path.splitext(pdb_base)[0] + "_emringer"
   easy_pickle.dump("%s.pkl" % params.output_base, results)
   print >> out, "Wrote %s.pkl" % params.output_base
   csv = "\n".join([ r.format_csv() for r in results ])

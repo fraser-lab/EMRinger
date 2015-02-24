@@ -260,7 +260,7 @@ def main(args):
 				print "Optimal Threshold: %.3f" % non_zero_thresholds[index]
 				print "Rotamer-Ratio: %.3f" % rotamer_ratios[index]
 				print "Max Zscore: %.3f" % float(value)
-				print "Model Length: %d" % length
+				print "Total Residues Scanned: %d" % length
 				# print "Z-score/(length): %.8f" % (value/length)
 				print "EMRinger Score: %8f" % (10*value/math.sqrt(length))
 				break
@@ -285,25 +285,25 @@ def plot_rotamers(binned_output, filename, threshold, first):
 	# print 'Wrote '+filename+'/%.3f.Phenixed_Histogram.png' % threshold
 	
 def plot_peaks(peak_count, filename, threshold, first, title=0):
-	plt.figure(2, figsize=(5,4))
+	plt.figure(2, figsize=(6,4.5))
 	# rcParams.update({'figure.autolayout': True})
 	colors = ['#F15854']*6+['#5DA5DA']*13+['#F15854']*11+['#5DA5DA']*13+['#F15854']*11+['#5DA5DA']*13+['#F15854']*5
 	plt.clf()
-	plt.axvspan((first-30), first+30, color='0.5', alpha=0.5)
-	plt.axvspan(first+90, first+150, color='0.5', alpha=0.5)
-	plt.axvspan(first+210, (first+270), color='0.5', alpha=0.5)
+	plt.axvspan((first-30), first+30, color='0.5', alpha=0.5, linewidth=0)
+	plt.axvspan(first+90, first+150, color='0.5', alpha=0.5, linewidth=0)
+	plt.axvspan(first+210, (first+270), color='0.5', alpha=0.5, linewidth=0)
 	plt.tick_params(axis='x',which='both',top='off')
 	plt.tick_params(axis='y',which='both',right='off')
 	peak_count_extra = peak_count+[peak_count[0]]
 	angles = [i*5 for i in range(0,73)]
 	plt.bar(angles,peak_count_extra, width=5, align='center', color=colors)
-	plt.title('Peak Counts', y=1.05) #  - Threshold %.3f' % (threshold)
+	# plt.title('Peak Counts', y=1.05) #  - Threshold %.3f' % (threshold)
 	plt.xticks([i*60 for i in range(7)])
 	plt.xlim(0,360)
 	plt.xlabel(r'Chi1 Angle ($\degree$)', labelpad=10)
 	plt.ylabel("Peak Count", labelpad=10)
-	plt.savefig('%s.output/%.3f.histogram.png' % (filename,threshold))
-	print 'Saved plot to %s.output/%.3f.histogram.png' % (filename,threshold)
+	plt.savefig('%s.output/%.3f.threshold_histogram.png' % (filename,threshold))
+	print 'Saved plot to %s.output/%.3f.threshold_histogram.png' % (filename,threshold)
 	# print 'RMSD at threshold %.3f is %.1f' % (threshold,title)
 	# print 'Wrote '+filename+'/%.3f.Phenix_allpeaks.png' % threshold
 	plt.clf()
@@ -315,29 +315,30 @@ def plot_progression(non_zero_thresholds, rotamer_ratios, file, zscores, i="Tota
 			rotamer_ratios= rotamer_ratios[j:]
 			zscores=zscores[j:]
 			break
-	fig = plt.figure(3, figsize=(5.5,4))
+	fig = plt.figure(3, figsize=(6,4.5))
 	ax1 = plt.subplot()
 	ax1.plot(non_zero_thresholds, zscores, 'b-', linewidth=3.0, alpha=0.7)
-	ax1.set_xlabel('Electron Potential Threshold')
+	ax1.set_xlabel('Map Value Threshold')
 	# Make the y-axis label and tick labels match the line color.
 	ax1.set_ylabel('EMRinger Score', color='b')
 	for tl in ax1.get_yticklabels():
 		tl.set_color('b')
 	ax1.set_ylim([-1,4])
-	ax1.axhspan(-1,1,color='0.5',alpha=0.1)
+	ax1.axhspan(-0.015,0.015,color='0.1',alpha=0.3, linewidth=0)
 	ax2 = ax1.twinx()
 	ax2.grid()
 	ax2.plot(non_zero_thresholds, rotamer_ratios, 'r-', label = i, linewidth=3.0, alpha=0.7)
 	ax2.set_ylim([0.4,1])
-	ax2.set_ylabel(r'% Rotameric Residues', color='r', labelpad=10)
+	ax2.set_ylabel(r'Fraction Rotameric', color='r', labelpad=10)
 	ax1.xaxis.set_ticks_position('bottom')
+	# ax2.set_xlim(2,12)
 	# ax2.set_xlim([0.005,0.03])
 	for tl in ax2.get_yticklabels():
 		tl.set_color('r')
-	if i != "Total":
-		plt.title("Threshold Scan - %s" % i, y=1.05) 
-	else:
-		plt.title("Threshold Scan", y=1.05)
+	# if i != "Total":
+		# plt.title("Threshold Scan - %s" % i, y=1.05) 
+	# else:
+	# plt.title("Threshold Scan", y=1.05)
 	plt.savefig('%s.output/%s.threshold_scan.png' % (file, i))
 	print 'Saved plot to %s.output/%s.threshold_scan.png' % (file, i)
 	# print 'Wrote '+file+'/threshold_scan.png'

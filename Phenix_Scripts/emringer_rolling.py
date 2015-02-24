@@ -48,7 +48,7 @@ parser.add_argument("--rotamericity_cutoff", dest = "rotamer_cutoff",
 parser.add_argument("--graph", dest = "graph", action='store_true')
 parser.add_argument("--save", dest = "save", action='store_true', default=True)
 parser.add_argument("-r", "--rel", dest = "rel", action='store_true')
-parser.set_defaults(rel=False, graph=False, save=False)
+parser.set_defaults(rel=False, graph=False, save=True)
 args = parser.parse_args()
 
 class RingerDict(object):
@@ -144,12 +144,12 @@ def main():
 def plot_results(results_a):
   for chain in results_a.keys():
     fig, ax = plt.subplots()
-    # plt.title("Rolling window - Chain %s" % chain)
+    plt.title("Rolling window - Chain %s" % chain)
     x_a = [k[0] for k in results_a[chain]]
     y_a = [np.divide(k[3],k[2]) for k in results_a[chain]]
     plt.plot(x_a, y_a, linewidth=3.0, alpha=0.9)
     # plt.xlim(381,695)
-    plt.xlabel("Center Residue of %d-Residue Window" % (10*args.extension+1), labelpad=10)
+    plt.xlabel("Center Residue of %d-Residue Window" % (2*args.extension+1), labelpad=10)
     plt.ylabel("Fraction Rotameric Residues", labelpad=10)
     plt.ylim(0,1)
     # plt.legend(loc=4)
