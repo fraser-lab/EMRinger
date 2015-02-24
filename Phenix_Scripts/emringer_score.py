@@ -35,7 +35,6 @@ def Parse_stuff():
   parser = argparse.ArgumentParser()
   parser.add_argument("-i", "--files", dest="filenames", help='Filenames (including path if not in current directory) of pkl', nargs='*', default=['/5778.ent_ringer.pkl'])
   parser.add_argument("-s", "--Sampling_Angle", dest="sampling_angle", help="Don't mess with this unless you've also made the corresponding change in ringer. By default it is 5, which is identical to the default in ringer.", nargs='?', default=5)  
-  parser.add_argument("-r", "--Residues", dest="residues")
   args = parser.parse_args()
   return args
 
