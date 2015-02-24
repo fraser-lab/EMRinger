@@ -1,6 +1,6 @@
 #Scripts to Run EMRinger
 
-These scripts can all be run with phenix.python. 
+These scripts can all be run with phenix.python. The visualizations that get output use matplotlib; they use the `matplotlibrc` file in this folder to get some styling information; if run without this `rc` file, nothing will break, but the visualizations won't look nearly as nice.
 
 `emringer_score.py` and `emringer_residue.py` and `emringer_rolling.py` each import from `emringer.py`, so all scripts must be kept in the same folder to run.
 
