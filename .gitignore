@@ -55,3 +55,10 @@ target/
 
 # Mac OSX
 .DS_Store
+
+# Test data
+*.map
+*.pdb
+*.csv
+*.pkl
+*.png
