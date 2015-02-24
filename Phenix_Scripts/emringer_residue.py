@@ -24,7 +24,7 @@ import matplotlib.pyplot as plt
 import argparse
 from collections import OrderedDict
 from matplotlib import rcParams
-# rcParams['figure.autolayout'] = True
+rcParams['figure.autolayout'] = True
 # rcParams['xtick.labelsize'] = 16
 # rcParams['ytick.labelsize'] = 16
 # rcParams['axes.labelsize'] = 24

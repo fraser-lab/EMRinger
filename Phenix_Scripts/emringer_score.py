@@ -22,19 +22,20 @@ import matplotlib.pyplot as plt
 import argparse
 from collections import OrderedDict
 from matplotlib import rcParams
-# rcParams['figure.autolayout'] = True
+rcParams['figure.autolayout'] = True
 # rcParams['xtick.labelsize'] = 16
 # rcParams['ytick.labelsize'] = 16
 # rcParams['axes.labelsize'] = 24
 # rcParams['axes.titlesize'] = 24
 
 
+
 ########################################################################
 # Argument Parsing  
 def Parse_stuff():
   parser = argparse.ArgumentParser()
-  parser.add_argument("-i", "--files", dest="filenames", help='Filenames (including path if not in current directory) of pkl', nargs='*', default=['/5778.ent_ringer.pkl'])
-  parser.add_argument("-s", "--Sampling_Angle", dest="sampling_angle", help="Don't mess with this unless you've also made the corresponding change in ringer. By default it is 5, which is identical to the default in ringer.", nargs='?', default=5)  
+  parser.add_argument("-i", "--files", dest="filenames", help='Filenames (including path if not in current directory) of pkl', nargs='*', default=['/5623_emringer.pkl'])
+  parser.add_argument("-s", "--Sampling_Angle", dest="sampling_angle", help="Don't mess with this unless you've also made the corresponding change in emringer. By default it is 5, which is identical to the default in ringer.", nargs='?', default=5)  
   args = parser.parse_args()
   return args
 
