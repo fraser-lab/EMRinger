@@ -113,7 +113,7 @@ def RMSD_statistic(peak_list):
 	RMSD = (sum(squared_deviations)/len(squared_deviations))**0.5
 	return RMSD
 
-def calculate_peaks(ringer,threshold, args):
+def calculate_peaks(ringer,threshold):
 	## Checks if something is greater than either of its neighbors (including wrapping) and returns if true and if above a threshold)
 	new_peaks=Peaklist()
 	list = ringer._angles[1].densities
@@ -124,7 +124,7 @@ def calculate_peaks(ringer,threshold, args):
 
 
 
-def parse_pickle(filename, args):
+def parse_pickle(filename):
 	# All processes that require reading the pickle. Involves reading out the angles and calculating the thresholds.
 	print "===== Loading Pickle: %s =====" % filename
 	chi = 1
@@ -154,11 +154,11 @@ def calculate_binned_counts(peak_count, first=60, binsize=12,n_angles=72):
 			binned_output[i] += peak_count[int(first_loc+i*binsize-binsize/2+j)%72]
 	return binned_output
 
-def calc_ratio(count_list, args):
+def calc_ratio(count_list, sampling_angle = 5):
 	# Calculate the same statistics as the "statistic" call, but do it without ifrst binning the peaks.
-	total_angles=360/args.sampling_angle
+	total_angles=360/sampling_angle
 	binsize=int(total_angles/6)
-	first_loc=60/args.sampling_angle
+	first_loc=60/sampling_angle
 	
 	binned_list=[0]*6
 	for i in range(6):
@@ -166,8 +166,8 @@ def calc_ratio(count_list, args):
 			binned_list[i] += count_list[int(first_loc+i*binsize-binsize/2+j)%72]
 	rotamer_count = sum(binned_list[0::2])
 	total_count = sum(binned_list)
-	stdev = 0.5*math.sqrt(total_count)
-	mean= total_count/2
+	stdev = math.sqrt((total_angles/2+3)*(total_angles/2-3)/(total_angles**2)*total_count)
+	mean= total_count*(total_angles/2+3)/total_angles
 	rotamer_ratio=rotamer_count/(total_count+0.000000000000000000001)
 	zscore=(rotamer_count-mean)/(stdev+0.000000000000000000001)
 	return rotamer_ratio, zscore
@@ -197,7 +197,7 @@ def main(args):
 		rotamer_ratios=[]
 
 		non_zero_thresholds=[]
-		waves, thresholds = parse_pickle(file, args)
+		waves, thresholds = parse_pickle(file)
 		length = len(waves)
 		peaks=OrderedDict()
 				# calculate peaks and histogram
@@ -210,7 +210,7 @@ def main(args):
 			for i in Residue_codes:
 				residue_peak_count[i][threshold]=[0]*72
 			for i in waves:
-				peaks[threshold].append_lists(calculate_peaks(i, threshold, args))
+				peaks[threshold].append_lists(calculate_peaks(i, threshold))
 			for peak in peaks[threshold].get_peaks():
 				peak_count[threshold][peak.chi_value]+=1
 				residue_peak_count[peak.resname][threshold][peak.chi_value]+=1
@@ -224,7 +224,7 @@ def main(args):
 			if rotamer_ratio_n==0: 
 				break
 			for i in Residue_codes:
-				rotamer_ratios_residues_n, zscores_n = calc_ratio(residue_peak_count[i][threshold], args)
+				rotamer_ratios_residues_n, zscores_n = calc_ratio(residue_peak_count[i][threshold], args.sampling_angle)
 				rotamer_ratios_residues[i].append(rotamer_ratios_residues_n)
 				zscores_residues[i].append(zscores_n)
 			non_zero_thresholds.append(threshold)
