@@ -2,20 +2,27 @@
 
 ########################################################################
 # Package imports
-import numpy as np
+import os
 import math
-from emringer import ringer_chi, ringer_residue
-from libtbx import easy_pickle
-import matplotlib.pyplot as plt
 import argparse
-# from matplotlib import rcParams
 from itertools import count, groupby
+
+from libtbx import easy_pickle
+import numpy as np
+import matplotlib.pyplot as plt
+
+from emringer import ringer_chi, ringer_residue
+
+
+# from matplotlib import rcParams
+
 
 # rcParams['figure.autolayout'] = True
 # rcParams['xtick.labelsize'] = 16
 # rcParams['ytick.labelsize'] = 16
 # rcParams['axes.labelsize'] = 24
 # rcParams['axes.titlesize'] = 24
+
 
 
 Residue_codes = ["ARG","ASN","ASP","CYS","GLU","GLN","HIS",
@@ -46,7 +53,7 @@ parser.add_argument("--rotamericity_cutoff", dest = "rotamer_cutoff",
   help='Maximum rotamericity to be flagged.'
   , nargs="?", type=float, default=0.5)
 parser.add_argument("--graph", dest = "graph", action='store_true')
-parser.add_argument("--save", dest = "save", action='store_true', default=True)
+parser.add_argument("--save", dest = "save", action='store_true')
 parser.add_argument("-r", "--rel", dest = "rel", action='store_true')
 parser.set_defaults(rel=False, graph=False, save=True)
 args = parser.parse_args()
@@ -101,12 +108,16 @@ def identify_regions(results):
     else:
       print "No outliers at this threshold \n"
 
-
+def make_dir(f):
+    if not os.path.exists(f):
+        os.makedirs(f)
 
 
 
 def main():
   ringer_results = easy_pickle.load(args.filename_a)
+  foldername=args.filename_a[:-4]+".output"
+  make_dir(foldername)
   hierarchy = RingerDict(ringer_results, 0)
   results_a = {}
   for chain in hierarchy.get_chains():
@@ -134,33 +145,36 @@ def main():
               if chi.deviation <= 30:
                 n_deviate += 1
       results_a[chain].append((i, total_n, threshold_n, n_deviate))
-  # identify_regions(results)
+  print "====Low-scoring, high-signal regions===="
+  identify_regions(results_a)
   if args.graph or args.save:
-    plot_results(results_a)
+    plot_results(results_a, foldername)
 
 
 
 
-def plot_results(results_a):
+def plot_results(results_a, foldername):
   for chain in results_a.keys():
     fig, ax = plt.subplots()
-    plt.title("Rolling window - Chain %s" % chain)
+    ax.set_title("Rolling window - Chain %s, Threshold %f" % (chain, args.threshold), y=1.05)
     x_a = [k[0] for k in results_a[chain]]
     y_a = [np.divide(k[3],k[2]) for k in results_a[chain]]
-    plt.plot(x_a, y_a, linewidth=3.0, alpha=0.9)
-    # plt.xlim(381,695)
-    plt.xlabel("Center Residue of %d-Residue Window" % (2*args.extension+1), labelpad=10)
-    plt.ylabel("Fraction Rotameric Residues", labelpad=10)
-    plt.ylim(0,1)
-    # plt.legend(loc=4)
-    # ax.axvspan(380,382,color='0.1',alpha=0.3, linewidth=0)
-    # ax.axvspan(694,696,color='0.1',alpha=0.3, linewidth=0)
+    y_b = [np.divide(k[2],k[1]) for k in results_a[chain]]
+    ax.plot(x_a, y_a, linewidth=3.0, alpha=0.9, label="Fraction Rotameric (Passing Threshold)")
+    ax.plot(x_a, y_b, linewidth=3.0, alpha=0.9, label="Fraction above Threshold")
+
+    ax.set_xlabel("Center Residue of %d-Residue Window" % (2*args.extension+1), labelpad=10)
+    ax.set_ylabel("Fraction of Residues", labelpad=10)
+    ax.set_ylim(0,1)
+    ax.legend(loc=4)
+    # ax.legend(bbox_to_anchor=(0., 1.02, 1., .102), loc=3,
+    #     ncol=2, mode="expand", borderaxespad=0., fontsize="small")
     ax.yaxis.set_ticks_position('left') # this one is optional but I still recommend it...
     ax.xaxis.set_ticks_position('bottom')
     if args.graph:
       fig.show()
     if args.save:
-      output = args.filename_a[:-4] + "_" + chain + "_rolling.png"
+      output = foldername + "/" + chain + "_rolling.png"
       fig.savefig(output)
 
 

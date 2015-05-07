@@ -182,7 +182,7 @@ def make_dir(f):
 
 def main(args):
 	for file in args.filenames:
-		make_dir(file+'.output')
+		make_dir(file[:-4]+'.output')
 		Weird_residues=OrderedDict()
 		peak_count={}
 		residue_peak_count={}
@@ -241,18 +241,18 @@ def main(args):
 		# 	plot_progression(non_zero_thresholds, rotamer_ratios_residues[i], file, zscores_residues[i], i)
 		print ""
 		print "===== Writing Pickles Out ====="
-		easy_pickle.dump(file+'.output/Outliers.pkl',Weird_residues)
-		print 'Wrote ' + file+'.output/Outliers.pkl'
-		easy_pickle.dump(file+'.output/rotamer_ratios.pkl', rotamer_ratios)
-		print 'Wrote ' + file+'.output/rotamer_ratios.pkl'
-		easy_pickle.dump(file+'.output/zscores.pkl', zscores)
-		print 'Wrote ' + file+'.output/zscores.pkl'
-		easy_pickle.dump(file+'.output/emringer_scores.pkl', [10*i/math.sqrt(length) for i in zscores])
-		print 'Wrote ' + file+'.output/emringer_scores.pkl'
-		easy_pickle.dump(file+'.output/thresholds.pkl', thresholds)
-		print 'Wrote ' + file+'.output/thresholds.pkl'
-		easy_pickle.dump(file+'.output/peak_counts.pkl', peak_count)
-		print 'Wrote ' + file+'.output/peak_counts.pkl'
+		easy_pickle.dump(file[:-4]+'.output/Outliers.pkl',Weird_residues)
+		print 'Wrote ' + file[:-4]+'.output/Outliers.pkl'
+		easy_pickle.dump(file[:-4]+'.output/rotamer_ratios.pkl', rotamer_ratios)
+		print 'Wrote ' + file[:-4]+'.output/rotamer_ratios.pkl'
+		easy_pickle.dump(file[:-4]+'.output/zscores.pkl', zscores)
+		print 'Wrote ' + file[:-4]+'.output/zscores.pkl'
+		easy_pickle.dump(file[:-4]+'.output/emringer_scores.pkl', [10*i/math.sqrt(length) for i in zscores])
+		print 'Wrote ' + file[:-4]+'.output/emringer_scores.pkl'
+		easy_pickle.dump(file[:-4]+'.output/thresholds.pkl', thresholds)
+		print 'Wrote ' + file[:-4]+'.output/thresholds.pkl'
+		easy_pickle.dump(file[:-4]+'.output/peak_counts.pkl', peak_count)
+		print 'Wrote ' + file[:-4]+'.output/peak_counts.pkl'
 		for index, value in enumerate(zscores):
 			if value == max(zscores):
 				print ""
@@ -281,7 +281,7 @@ def plot_rotamers(binned_output, filename, threshold, first):
 	angles = range(6)
 	bin_angles = [(i*60+first)%360 for i in angles]
 	plt.bar(bin_angles, binned_output, align='center', color=colors, width=60)
-	plt.savefig('%s.output/%.3f.Phenixed_Histogram.png' % (filename,threshold))
+	plt.savefig('%s.output/%.3f.Phenixed_Histogram.png' % (filename[:-4],threshold))
 	# print 'Wrote '+filename+'/%.3f.Phenixed_Histogram.png' % threshold
 	
 def plot_peaks(peak_count, filename, threshold, first, title=0):
@@ -302,8 +302,8 @@ def plot_peaks(peak_count, filename, threshold, first, title=0):
 	plt.xlim(0,360)
 	plt.xlabel(r'Chi1 Angle ($\degree$)', labelpad=10)
 	plt.ylabel("Peak Count", labelpad=10)
-	plt.savefig('%s.output/%.3f.threshold_histogram.png' % (filename,threshold))
-	print 'Saved plot to %s.output/%.3f.threshold_histogram.png' % (filename,threshold)
+	plt.savefig('%s.output/%.3f.threshold_histogram.png' % (filename[:-4],threshold))
+	print 'Saved plot to %s.output/%.3f.threshold_histogram.png' % (filename[:-4],threshold)
 	# print 'RMSD at threshold %.3f is %.1f' % (threshold,title)
 	# print 'Wrote '+filename+'/%.3f.Phenix_allpeaks.png' % threshold
 	plt.clf()
@@ -339,8 +339,8 @@ def plot_progression(non_zero_thresholds, rotamer_ratios, file, zscores, i="Tota
 		# plt.title("Threshold Scan - %s" % i, y=1.05) 
 	# else:
 	# plt.title("Threshold Scan", y=1.05)
-	plt.savefig('%s.output/%s.threshold_scan.png' % (file, i))
-	print 'Saved plot to %s.output/%s.threshold_scan.png' % (file, i)
+	plt.savefig('%s.output/%s.threshold_scan.png' % (file[:-4], i))
+	print 'Saved plot to %s.output/%s.threshold_scan.png' % (file[:-4], i)
 	# print 'Wrote '+file+'/threshold_scan.png'
 	plt.clf()
 	
