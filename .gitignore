@@ -57,6 +57,7 @@ target/
 .DS_Store
 
 # Test data
+matplotliblog.txt
 *.map
 *.pdb
 *.csv
