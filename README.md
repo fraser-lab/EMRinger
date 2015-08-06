@@ -1,5 +1,5 @@
 # EMRinger
-** This is the set of scripts used for the EMRinger paper (citation below). For the most up-to-date version of EMRinger, please use phenix.emringer or the integrated GUI version of EMRinger in the latest phenix nightly.**
+**This is the set of scripts used for the EMRinger paper (citation below). For the most up-to-date version of EMRinger, please use phenix.emringer or the integrated GUI version of EMRinger in the latest phenix nightly.**
 
 *All of the scripts used in the EMRinger paper were based on [Phenix](www.phenix-online.org), [python](www.python.org), and [pymol](www.pymol.org)*
 
