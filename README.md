@@ -23,3 +23,6 @@ matplotlib
 numpy
 multiprocessing
 ```
+
+## Citation:
+Barad B.A., Echols N., Wang R. Y-R., Cheng Y.C., Dimaio F., Adams P.D., Fraser J.S. EMRinger: side-chain-directed model and map validation for 3D Electron Cryomicroscopy. *Nature Methods* published online 17 August 2015; doi: 10.1038/nmeth.3541

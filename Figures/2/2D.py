@@ -16,7 +16,7 @@ fn = np.poly1d(z)
 
 fig, ax = plt.subplots(figsize=(6,4.5))
 ax.set_xlabel("Resolution ($\AA$)", labelpad=10)
-ax.set_ylabel("EMRinger Score", labelpad=10)
+ax.set_ylabel("EMRinger score", labelpad=10)
 ax.set_xlim(3.0,5.2)
 ax.set_ylim(-1,4)
 ax.xaxis.set_ticks_position('bottom')
@@ -33,5 +33,12 @@ for _,row in table.iterrows():
 		ax.annotate(row['EMDB ID'], xy=(row['Resolution'],row['EMRinger Score']), size="xx-small", xytext=(-4,0), ha="right", textcoords='offset points')
 	elif row['EMDB ID'] in [2364, 2787, 5645]:
 		ax.annotate(row['EMDB ID'], xy=(row['Resolution'],row['EMRinger Score']), size="xx-small", xytext=(4,-6), textcoords='offset points')
-
+ax.xaxis.set_ticks_position('bottom')
+ax.yaxis.set_ticks_position('left')
+ax.yaxis.set_ticks_position('left') # this one is optional but I still recommend it...
+ax.xaxis.set_ticks_position('bottom')
+ax.spines['top'].set_visible(False)
+ax.spines['right'].set_visible(False)
+ax.get_xaxis().tick_bottom()
+ax.get_yaxis().tick_left()
 fig.savefig('2D.png')

@@ -22,6 +22,7 @@ import numpy as np
 import os
 from libtbx import easy_pickle, adopt_init_args
 from emringer import *
+import matplotlib
 import matplotlib.pyplot as plt
 import argparse
 from collections import OrderedDict
@@ -275,7 +276,7 @@ def main(args):
 # 	plt.clf()
 
 def plot_stacked_bar(peaklist, filename, first):
-	colors = ['#F15854', '#FAA43A', '#60BD68', '#5DA5DA', '#B276B2']
+	colors = ['#D92120', '#E7742F', '#4683C1', '#781C81', '#B276B2']
 	fig, ax = plt.subplots(figsize=(6,4.5))
 	ax.axvspan((first-30), first+30, color='0.5', alpha=0.5, linewidth=0)
 	ax.axvspan(first+90, first+150, color='0.5', alpha=0.5, linewidth=0)
@@ -289,12 +290,21 @@ def plot_stacked_bar(peaklist, filename, first):
 		i = i+1
 	ax.set_xlim([0, 360])
 	ax.set_xticks([i*60 for i in range(7)])
-	ax.set_xlabel(r"Chi1 Angle ($\degree$)", labelpad=10)
-	ax.set_ylabel("Peak Count", labelpad=10)
+	ax.set_xlabel(r"$\chi$1 angle ($\degree$)", labelpad=10)
+	ax.set_ylabel("Peak count", labelpad=10)
 	ax.yaxis.set_ticks_position('left') # this one is optional but I still recommend it...
 	ax.xaxis.set_ticks_position('bottom')
+	ax.spines['top'].set_visible(False)
+	ax.spines['right'].set_visible(False)
+	ax.get_xaxis().tick_bottom()
+	ax.get_yaxis().tick_left()
+	ax.get_xaxis().set_major_formatter(
+	  matplotlib.ticker.FuncFormatter(lambda x, p: format(int(x), ',')))
+	ax.get_yaxis().set_major_formatter(
+	  matplotlib.ticker.FuncFormatter(lambda x, p: format(int(x), ',')))
 	# ax.set_title("Histogram of ringer analysis\nat different thresholds", y=1.05)
-	ax.legend(loc=2, fontsize=10)
+	leg=ax.legend(loc=2, fontsize=13, borderpad=0.2)
+	leg.get_frame().set_linewidth(0.0)
 	fig.savefig('2A.png')
 	fig.clf()
 

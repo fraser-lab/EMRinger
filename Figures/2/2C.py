@@ -18,6 +18,7 @@ import numpy as np
 import os
 from libtbx import easy_pickle, adopt_init_args
 from emringer import *
+import matplotlib
 import matplotlib.pyplot as plt
 import argparse
 from collections import OrderedDict
@@ -232,12 +233,13 @@ def main(args):
 			zscores.append(zscore_n)
 			rotamer_ratios.append(rotamer_ratio_n)
 			print "===== Plotting Histogram for Threshold %.3f =====" % threshold
-			plot_peaks(peak_count[threshold], file, threshold, args.first_rotamer, RMSD_statistic(peaks[threshold].peaks))
+			# plot_peaks(peak_count[threshold], file, threshold, args.first_rotamer, RMSD_statistic(peaks[threshold].peaks))
 			sample_sizes.append(sum(peak_count[threshold]))
 			# plot_rotamers(binned_peaks[threshold], file, threshold, args.first_rotamer)
 		# 	print "Outliers at threshold %.2f: %s" % (threshold, str(Weird_residues[threshold]))
 		print ""
 		print "===== Plotting Statistics Across Thresholds ====="
+		print zscores
 		plot_progression(non_zero_thresholds, rotamer_ratios, file, [10*i/math.sqrt(length) for i in zscores])
 		# for i in Residue_codes:
 		# 	plot_progression(non_zero_thresholds, rotamer_ratios_residues[i], file, zscores_residues[i], i)
@@ -313,6 +315,7 @@ def plot_peaks(peak_count, filename, threshold, first, title=0):
 	plt.clf()
 
 def plot_progression(non_zero_thresholds, rotamer_ratios, file, zscores, i="Total"):
+
 	for j in range(len(zscores)):
 		if zscores[j]>=0:
 			non_zero_thresholds = non_zero_thresholds[j:]
@@ -321,19 +324,29 @@ def plot_progression(non_zero_thresholds, rotamer_ratios, file, zscores, i="Tota
 			break
 	fig = plt.figure(3, figsize=(6,4.5))
 	ax1 = plt.subplot()
-	ax1.plot(non_zero_thresholds, zscores, color = "#5DA5DA", linewidth=3.0, alpha=0.7)
-	for index, value in zscores:
+	print zscores
+	ax1.plot(non_zero_thresholds, zscores, color = "#4683C1", linewidth=3.0, alpha=0.7)
+	for index, value in enumerate(zscores):
 		if value == max(zscores):
-			ax1.plot(non_zero_thresholds[index], zscores[index], marker="o", mew=0, color="#5DA5DA", ms=6.0) # Plot the dot at the peak
-	ax1.set_xlabel('Coulomb Potential Threshold', labelpad=10)
+			ax1.plot(non_zero_thresholds[index], zscores[index], marker="o", mew=0, color="#4683C1", ms=6.0) # Plot the dot at the peak
+			break
+	ax1.set_xlabel('Map value cutoff', labelpad=10)
 	# Make the y-axis label and tick labels match the line color.
-	ax1.set_ylabel('EMRinger Score', labelpad=10) #, color='b'
+	ax1.set_ylabel('EMRinger score', labelpad=10) #, color='b'
 	# for tl in ax1.get_yticklabels():
 	# 	tl.set_color('b')
 	ax1.set_ylim([-1,4])
 	ax1.axhspan(-0.015,0.015,color='0.1',alpha=0.3, linewidth=0)
+	ax1.yaxis.set_ticks_position('left') # this one is optional but I still recommend it...
 	ax1.xaxis.set_ticks_position('bottom')
-	ax1.yaxis.set_ticks_position('left')
+	ax1.spines['top'].set_visible(False)
+	ax1.spines['right'].set_visible(False)
+	ax1.get_xaxis().tick_bottom()
+	ax1.get_yaxis().tick_left()
+	# ax1.get_xaxis().set_major_formatter(
+	#   matplotlib.ticker.FuncFormatter(lambda x, p: format(int(x), ',')))
+	# ax1.get_yaxis().set_major_formatter(
+	#   matplotlib.ticker.FuncFormatter(lambda x, p: format(int(x), ',')))
 
 	# ax2 = ax1.twinx()
 	# ax2.grid()
