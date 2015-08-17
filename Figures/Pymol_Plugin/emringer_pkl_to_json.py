@@ -13,4 +13,5 @@ make_dir("%s_rings" % filename)
 
 file = easy_pickle.load(sys.argv[1])
 for i in file:
-  json.dump(i._angles[1].densities, open("%s_rings/%s_%d.json" % (filename, i.chain_id, int(i.resid)), 'w'))
+  if 1 in i._angles.keys():
+    json.dump(i._angles[1].densities, open("%s_rings/%s_%d.json" % (filename, i.chain_id, int(i.resid)), 'w'))
