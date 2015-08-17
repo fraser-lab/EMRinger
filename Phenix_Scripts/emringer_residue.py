@@ -5,13 +5,14 @@
 # Rotamer distribution analysis tool for validation of models generated from cryoEM data.
 # Written by Benjamin Barad
 
-# Written for use with EMRinger pkl output.
+# Written for use with emringer.py pkl output.
 # 
 # Reference:
 #
-# Barad BA, Echols N, Wang RYR, Cheng YC, DiMaio F, Adams PD, Fraser JS. 
-# Side-chain-directed model and map validation for 3D Electron Cryomicroscopy. 
-# Manuscript in preparation.
+# Barad BA, Echols N, Wang RY-R, Cheng YC, DiMaio F, Adams PD, Fraser JS. 
+# EMRinger: side-chain-directed model and map validation for 3D electron 
+# cryomicroscopy. Nature Methods published online 17 August 2015; 
+# doi:10.1038/nmeth.3541.
 
 ########################################################################
 # Package imports

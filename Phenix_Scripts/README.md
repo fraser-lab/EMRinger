@@ -1,4 +1,6 @@
 #Scripts to Run EMRinger
+**These scripts all work, but future fixes will be made in the phenix version of the software, which can be run in current nightlies with phenix.emringer, as well as via a gui tool in the validations tab.**
+
 
 These scripts can all be run with phenix.python. The visualizations that get output use matplotlib; they use the `matplotlibrc` file in this folder to get some styling information; if run without this `rc` file, nothing will break, but the visualizations won't look nearly as nice.
 

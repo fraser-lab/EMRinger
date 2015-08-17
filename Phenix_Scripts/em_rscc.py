@@ -4,6 +4,8 @@ Script to calculate per-residue RSCCs for a model versus an EM map with an
 arbitrary origin.
 """
 
+
+
 from __future__ import division
 from mmtbx import real_space_correlation
 import iotbx.phil
