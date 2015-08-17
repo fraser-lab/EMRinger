@@ -58,8 +58,4 @@ target/
 
 # Test data
 matplotliblog.txt
-*.map
-*.pdb
-*.csv
-*.pkl
 *.png

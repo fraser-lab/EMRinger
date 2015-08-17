@@ -1,20 +1,17 @@
 #! /usr/bin/env phenix.python
 
-# Implementation of the Ringer method, with plots, for use with the 
+# Implementation of the EMRinger method, with plots, for use with the 
 # EMRinger workflow.
-
 # References:
-# Ringer:
 # Lang PT, Ng HL, Fraser JS, Corn JE, Echols N, Sales M, Holton JM, Alber T.
 # Automated electron-density sampling reveals widespread conformational
 # polymorphism in proteins. Protein Sci. 2010 Jul;19(7):1420-31. PubMed PMID:
 # 20499387
 # 
-# EMRinger:
-# Barad BA, Echols N, Wang RY-R, Cheng YC, DiMaio F, Adams PD,
-# Fraser JS. EMRinger: side-chain-directed model and map validation for 3D
-# electron cryomicroscopy. Nature Methods published online 17 August 2015; 
-# doi:10.1038/nmeth.3541
+# Barad BA, Echols N, Wang RY-R, Cheng YC, DiMaio F, Adams PD, Fraser JS. 
+# EMRinger: side-chain-directed model and map validation for 3D electron 
+# cryomicroscopy. Nature Methods published online 17 August 2015; 
+# doi:10.1038/nmeth.3541.
 
 # Any software that wants to use the pkl output of this tool 
 # should import ringer_residue and ringer_chi from it.
