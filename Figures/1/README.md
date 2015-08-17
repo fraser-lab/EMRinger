@@ -15,13 +15,13 @@ EMDB 5778 must be downloaded to use.
 ## Usage
 ```bash
 phenix.python emringer_rings.py 1a.pdb emd_5778.map
-phenix.python emringer_pkl_to_json.py 1a_emringer_rings.pkl
+phenix.python emringer_pkl_to_json.py 1a_ringer_rings.pkl
 
 phenix.python emringer_rings.py 1c.pdb emd_5778.map
-phenix.python emringer_pkl_to_json.py 1c_emringer_rings.pkl
+phenix.python emringer_pkl_to_json.py 1c_ringer_rings.pkl
 
 phenix.python emringer_rings.py 1e.pdb emd_5778.map
-phenix.python emringer_pkl_to_json.py 1e_emringer_rings.pkl
+phenix.python emringer_pkl_to_json.py 1e_ringer_rings.pkl
 
 pymol 1A_C_E.pml
 
