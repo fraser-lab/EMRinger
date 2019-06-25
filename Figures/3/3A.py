@@ -50,4 +50,4 @@ ax.get_yaxis().tick_left()
 leg = ax.legend(bbox_to_anchor=(0.01, 0.95, 1., .1), loc=3,
        	ncol=4, mode="expand", borderaxespad=0., fontsize=16)
 leg.get_frame().set_linewidth(0.0)
-fig.savefig('4A.png')
+fig.savefig('3A.png')
