@@ -7,11 +7,11 @@ aromatic = pic.load(open('aromatic.pkl','rb'))
 aromatic = [i/max(aromatic) for i in aromatic]
 
 print "Loading Negative"
-positive = pic.load(open('positive.pkl','rb'))
+positive = pic.load(open('negative.pkl','rb'))
 positive = [i/max(positive) for i in positive]
 
 print "Loading Postive"
-negative = pic.load(open('negative.pkl','rb'))
+negative = pic.load(open('positive.pkl','rb'))
 negative = [i/max(negative) for i in negative]
 
 # leucine = pic.load(open('leucine.pkl','rb'))
