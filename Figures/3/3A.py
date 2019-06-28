@@ -6,11 +6,11 @@ print "Loading Aromatic"
 aromatic = pic.load(open('aromatic.pkl','rb'))
 aromatic = [i/max(aromatic) for i in aromatic]
 
-print "Loading Negative"
+print "Loading Positive"
 positive = pic.load(open('positive.pkl','rb'))
 positive = [i/max(positive) for i in positive]
 
-print "Loading Postive"
+print "Loading Negative"
 negative = pic.load(open('negative.pkl','rb'))
 negative = [i/max(negative) for i in negative]
 
@@ -50,4 +50,4 @@ ax.get_yaxis().tick_left()
 leg = ax.legend(bbox_to_anchor=(0.01, 0.95, 1., .1), loc=3,
        	ncol=4, mode="expand", borderaxespad=0., fontsize=16)
 leg.get_frame().set_linewidth(0.0)
-fig.savefig('4A.png')
+fig.savefig('3A.png')
