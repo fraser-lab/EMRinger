@@ -1,5 +1,6 @@
 # DEPRECATED: EMRinger
-## The current up to date version of EMRinger is packaged with CCTBX (https://github.com/cctbx/cctbx_project/blob/master/mmtbx/command_line/emringer.py). This version will not support new features or bugfixes.The code here remains for recapitulating exact results from the EMRinger paper (citation below).
+## The current up to date version of EMRinger is packaged with CCTBX (https://github.com/cctbx/cctbx_project/blob/master/mmtbx/command_line/emringer.py). This version will not support new features or bugfixes.The code here remains for recapitulating exact results from the EMRinger paper (citation below). The up to date version can be run with `cctbx.emringer` or `phenix.emringer`, or in the Phenix GUI.
+
 **This is the set of scripts used for the EMRinger paper (citation below). For the most up-to-date version of EMRinger, please use phenix.emringer or the integrated GUI version of EMRinger in the latest phenix nightly.**
 
 
