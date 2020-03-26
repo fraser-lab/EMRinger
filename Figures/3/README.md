@@ -24,4 +24,4 @@ phenix.python 3C_E.py 1 36
 
 
 
-*I am not including the raw dose-fractionated data here for the sake of data management (it spans several gigabytes). If you need to recapitulate the exact data, please email [Ben Barad](mailto:ben.barad@ucsf.edu) to coordinate a data transfer.*
+*I am not including the raw dose-fractionated data here for the sake of data management (it spans several gigabytes). If you need to recapitulate the exact data, please email [Ben Barad](mailto:benjamin.barad@gmail.com) to coordinate a data transfer.*
